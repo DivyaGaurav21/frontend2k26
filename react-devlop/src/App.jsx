@@ -94,6 +94,7 @@
 
 
 import './App.css'
+import Pagination from './components/akshay-saini/pagination/Pagination';
 import TabForm from './components/akshay-saini/tab-form/TabForm';
 // import CountdownTimer from './components/question/CountdownTimer';
 // import DebaunceSearch from './components/question/DebaunceSearch';
@@ -143,7 +144,8 @@ function App() {
       {/* <InfiniteScroll/> */}
       {/* <DebaunceSearch/> */}
       {/* <CountdownTimer/> */}
-      <TabForm/>
+      {/* <TabForm/> */}
+      <Pagination/>
     </>
   )
 }
