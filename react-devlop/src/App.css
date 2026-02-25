@@ -62,3 +62,14 @@ h4{
   font-weight: 700;
   font-size: 24px;
 }
+
+
+/* ------------star rating  */
+
+.star{
+  font-size: 100px;
+  cursor: pointer;
+}
+.active{
+  color: rgb(255, 0, 0);
+}

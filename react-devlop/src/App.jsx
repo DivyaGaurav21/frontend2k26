@@ -92,10 +92,12 @@
 
 // export default App
 
-
-import './App.css'
-import Pagination from './components/akshay-saini/pagination/Pagination';
-import TabForm from './components/akshay-saini/tab-form/TabForm';
+import "./App.css";
+// import BasicQue from './components/question/BasicQue';
+// import StarRating from './components/question/ StarRating';
+import Tabs from "./components/question/tabs/Tabs";
+// import Pagination from './components/akshay-saini/pagination/Pagination';
+// import TabForm from './components/akshay-saini/tab-form/TabForm';
 // import CountdownTimer from './components/question/CountdownTimer';
 // import DebaunceSearch from './components/question/DebaunceSearch';
 // import InfiniteScroll from './components/question/InfiniteScroll';
@@ -107,31 +109,28 @@ import TabForm from './components/akshay-saini/tab-form/TabForm';
 // import HomeUi from './components/question/modal/HomeUi';
 // import SearchFilter from './components/question/SearchFilter';
 // import MultiStepForm from './components/question/MultiStepForm';
-// import Tabs from './components/question/tabs/Tabs';
 // import FullyControlledForm from './components/question/FullyControlledForm';
 // import TodoList from './components/question/TodoList';
 // import FormValidation from './components/question/FormValidation';
-// import StarRating from './components/question/ StarRating';
 // import CounterStep from './components/question/CounterStep';
 // import MyButton from './components/question/MyButton';
-// import BasicQue from './components/question/BasicQue';
 // import RefHooks from './components/hooks/RefHooks';
 // import EffectHooks from './components/hooks/Effect
 
 function App() {
   return (
     <>
-      {/* <EffectHooks/>
-    <RefHooks/> */}
       {/* <BasicQue/> */}
       {/* <StarRating /> */}
+      <Tabs/>
+      {/* <EffectHooks/>
+    <RefHooks/> */}
       {/* <CounterStep/>
       <MyButton size='small' variant='danger'>TEST</MyButton> */}
       {/* <RefHooks/> */}
       {/* <FormValidation/> */}
       {/* <TodoList/> */}
       {/* <FullyControlledForm/> */}
-      {/* <Tabs/> */}
       {/* <MultiStepForm/> */}
       {/* <HomeUi/> */}
       {/* <SearchFilter/> */}
@@ -145,9 +144,9 @@ function App() {
       {/* <DebaunceSearch/> */}
       {/* <CountdownTimer/> */}
       {/* <TabForm/> */}
-      <Pagination/>
+      {/* <Pagination/> */}
     </>
-  )
+  );
 }
 
 export default App;
