@@ -61,11 +61,6 @@ select{
   transition: all 0.3s ease;
   background-color: #fff;
 }
-form{
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
 
 p{
   text-align: left;
@@ -73,11 +68,20 @@ p{
   font-weight: 600;
 }
 
+span{
+  size: 8px;
+  color: red;
+}
+
 .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
 
-span{
-  font-size: 10px;
-  color: red;
+.dark{
+  background-color: #000000;
+  color: #fff;
+}
+.light{
+  background-color: #fff;
+  color: #000000;
 }
