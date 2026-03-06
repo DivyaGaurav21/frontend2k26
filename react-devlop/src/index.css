@@ -68,10 +68,10 @@ p{
   font-weight: 600;
 }
 
-span{
+/* span{
   size: 8px;
   color: red;
-}
+} */
 
 .no-scrollbar::-webkit-scrollbar {
     display: none;
