@@ -1,5 +1,5 @@
 //  first index occurances of element in array
-function firstIndexOfEle(arr, si, elem) {
+function firstIndexOfEle(arr, si=0, elem) {
   if (si === arr.length) {
     return -1; // base case
   }
@@ -11,23 +11,20 @@ function firstIndexOfEle(arr, si, elem) {
   return firstIndexOfEle(arr, si + 1, elem);
 }
 
-console.log(firstIndexOfEle([2, 4, 6, 4, 7], 0, 4)); // 1
+console.log(firstIndexOfEle([2, 4, 6, 4, 7], 4)); // 1
 
 // kast index occurance of element in array
 function lastIndexOfEle(arr, si, elem) {
   if (si === arr.length) {
     return -1;
   }
-
   let smallAns = lastIndexOfEle(arr, si + 1, elem);
-
   if (smallAns === -1) {
     if (arr[si] === elem) {
       return si;
     }
     return -1;
   }
-
   return smallAns;
 }
 

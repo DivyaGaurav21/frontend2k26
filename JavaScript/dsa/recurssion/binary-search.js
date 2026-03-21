@@ -1,4 +1,4 @@
-function binarySearch(arr, x, si, ei) {
+function binarySearch(arr, x, si=0, ei= arr.length - 1) {
   if (si > ei) {
     return -1; // base case
   }
@@ -15,4 +15,4 @@ function binarySearch(arr, x, si, ei) {
 }
 
 let arr = [1, 3, 5, 7, 9, 11];
-console.log(binarySearch(arr, 7, 0, arr.length - 1));
+console.log(binarySearch(arr, 7));

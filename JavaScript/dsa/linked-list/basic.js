@@ -1,83 +1,99 @@
-class Node {
-  constructor(val) {
-    this.val = val;
-    this.next = null;
-  }
-}
+let Node = function (val) {
+  this.val = val;
+  this.next = null;
+};
 
-class LinkedList {
-  constructor() {
-    this.head = null;
-    this.size = 0;
-  }
-  addFirst(val) {
-    const newNode = new Node(val);
+let LinkedList = function () {
+  this.head = null;
+  this.size = 0;
+};
 
-    newNode.next = this.head;
+LinkedList.prototype.get = function (index) {
+  if (index < 0 || index >= this.size) return -1;
+  let curr = this.head;
+  for (let i = 0; i < index; i++) {
+    if (curr === null) return -1;
+    curr = curr.next;
+  }
+  return curr ? curr.val : -1;
+};
+
+LinkedList.prototype.addAtHead = function (val) {
+  let newNode = new Node(val);
+  newNode.next = this.head;
+  this.head = newNode;
+  this.size++;
+};
+
+LinkedList.prototype.addAtTail = function (val) {
+  let newNode = new Node(val);
+  if (this.head === null) {
     this.head = newNode;
-
-    this.size++;
-  }
-
-  addLast(val) {
-    const newNode = new Node(val);
-
-    if (!this.head) {
-      this.head = newNode;
-    } else {
-      let curr = this.head;
-
-      while (curr.next) {
-        curr = curr.next;
-      }
-
-      curr.next = newNode;
-    }
-
-    this.size++;
-  }
-
-  insertAtIndex(index, val) {
-    if (index < 0 || index > this.size) {
-      console.log("Invalid index");
-      return;
-    }
-
-    if (index === 0) {
-      this.addFirst(val);
-      return;
-    }
-
-    const newNode = new Node(val);
+  } else {
     let curr = this.head;
+    while (curr.next !== null) {
+      curr = curr.next;
+    }
+    curr.next = newNode;
+  }
+  this.size++;
+};
 
+LinkedList.prototype.addAtIndex = function (index, val) {
+  if (index < 0 || index > this.size) return -1;
+  if (index === 0) {
+    this.addAtHead(val);
+    return;
+  }
+  let curr = this.head;
+  let newNode = new Node(val);
+  for (let i = 0; i < index - 1; i++) {
+    curr = curr.next;
+  }
+  let temp = curr.next;
+  curr.next = newNode;
+  newNode.next = temp;
+  this.size++;
+};
+
+LinkedList.prototype.deleteAtIndex = function (index) {
+  if (index < 0 || index >= this.size) return;
+  if (index === 0) {
+    this.head = this.head.next;
+  } else {
+    let curr = this.head;
     for (let i = 0; i < index - 1; i++) {
       curr = curr.next;
     }
+    curr.next = curr.next.next;
+  }
+  this.size--;
+};
 
-    newNode.next = curr.next;
-    curr.next = newNode;
+LinkedList.prototype.print = function () {
+  let curr = this.head;
+  let result = "";
 
-    this.size++;
+  while (curr) {
+    result += curr.val + " -> ";
+    curr = curr.next;
   }
 
-  print() {
-    let curr = this.head;
-    let result = "";
+  console.log(result + "null");
+};
 
-    while (curr) {
-      result += curr.val + " -> ";
-      curr = curr.next;
-    }
+LinkedList.prototype.findIindex = function (num) {};
 
-    console.log(result + "null");
-  }
-}
+
 
 const list = new LinkedList();
-list.addFirst(12);
-list.addFirst(13);
-list.addFirst(14);
-list.addFirst(15);
-list.addFirst(16);
+list.addAtTail(12);
+list.addAtTail(13);
+list.addAtTail(14);
+list.addAtTail(15);
+list.addAtTail(16);
+list.addAtTail(17);
+list.print();
+// console.log(list.findMiddle());
+list.reverse();
 list.print();
