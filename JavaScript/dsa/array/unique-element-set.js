@@ -14,9 +14,8 @@ console.log(getUnique(arr));
 // can set takes direct array as argument ?
 // Yes ✅ Set can take an array directly as an argument.
 
-const arr = [1, 2, 2, 3];
 
-const uniqueSet = new Set(arr);
-
-console.log(uniqueSet); 
+// const arr = [1, 2, 2, 3];
+// const uniqueSet = new Set(arr);
+// console.log(uniqueSet); 
 // Output: Set {1, 2, 3}
