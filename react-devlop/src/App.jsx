@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
-import CounterZ from "./store/CounterZ";
+import Memo from "./components/hooks/Memo";
+// import CounterZ from "./store/CounterZ";
 
 
 const App = () => {
@@ -8,7 +9,8 @@ const App = () => {
     <div>
   
       {/* <Accordion/> */}
-      <CounterZ/>
+      {/* <CounterZ/> */}
+      <Memo/>
     </div>
   );
 };

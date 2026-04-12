@@ -1,3 +1,8 @@
+// Leetcode - 704. Binary Search
+
+// Time Complexity: O(log n)
+// Space Complexity: O(log n) (due to recursion stack)
+
 function binarySearch(arr, x, si=0, ei= arr.length - 1) {
   if (si > ei) {
     return -1; // base case

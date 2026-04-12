@@ -1,0 +1,14 @@
+
+.container {
+  text-align: center;
+}
+
+.timer {
+  font-size: 40px;
+  margin: 20px 0;
+}
+
+button {
+  padding: 10px 15px;
+  cursor: pointer;
+}
