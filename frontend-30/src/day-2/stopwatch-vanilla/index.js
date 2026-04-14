@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 let second = 0;
 let minute = 0;
 let hour = 0;
