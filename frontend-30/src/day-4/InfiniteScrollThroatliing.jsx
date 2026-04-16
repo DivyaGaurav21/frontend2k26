@@ -1,8 +1,8 @@
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./day4.css";
 
 const API_URL = "https://dummyjson.com/products";
-const InfiniteScrollThroatliing = ({
+const InfiniteScrollThrottling = ({
   api_url = API_URL,
   limit = 10,
   skip = 0,
@@ -11,14 +11,16 @@ const InfiniteScrollThroatliing = ({
   const [loading, setLoading] = useState(false);
   const [pagination, setPagination] = useState(skip);
 
+  const throttleRef = useRef(null);
+
+  // ✅ Fetch Data (depends on pagination)
   const fetchData = async () => {
     try {
       setLoading(true);
-      let jsonData = await fetch(
-        `${api_url}?limit=${limit}&skip=${pagination}`,
-      );
-      let data = await jsonData.json();
-      setData((prev) => [...prev, ...data.products]);
+      const res = await fetch(`${api_url}?limit=${limit}&skip=${pagination}`);
+      const json = await res.json();
+
+      setData((prev) => [...prev, ...json.products]);
     } catch (err) {
       console.log(err);
     } finally {
@@ -26,20 +28,23 @@ const InfiniteScrollThroatliing = ({
     }
   };
 
+  // ✅ Run API when pagination changes
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [pagination]);
 
-  const handleScroll = () => {
+  // ✅ Scroll Handler (only near bottom)
+  function handleScroll() {
     setPagination((prev) => prev + limit);
-    fetchData();
-  };
+  }
 
+  // ✅ Throttle Function
   function throttle(cb, delay) {
     let lastCall = 0;
 
     return function (...args) {
-      let now = Date.now();
+      const now = Date.now();
+
       if (now - lastCall >= delay) {
         lastCall = now;
         cb(...args);
@@ -47,12 +52,14 @@ const InfiniteScrollThroatliing = ({
     };
   }
 
-  const throttleFn = throttle(handleScroll, 1000);
-
+  // ✅ Setup throttled scroll listener once
   useEffect(() => {
-    window.addEventListener("scroll", throttleFn);
+    throttleRef.current = throttle(handleScroll, 1000);
+
+    window.addEventListener("scroll", throttleRef.current);
+
     return () => {
-      window.removeEventListener("scroll", throttleFn);
+      window.removeEventListener("scroll", throttleRef.current);
     };
   }, []);
 
@@ -66,9 +73,10 @@ const InfiniteScrollThroatliing = ({
           </div>
         ))}
       </div>
+
       {loading && <p>Loading...</p>}
     </div>
   );
 };
 
-export default InfiniteScrollThroatliing;
+export default InfiniteScrollThrottling;
