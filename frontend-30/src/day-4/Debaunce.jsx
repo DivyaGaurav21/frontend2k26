@@ -21,9 +21,10 @@ const Debaunce = () => {
       let data = await jsonData.json();
       setProduct(data.products);
       setCache((prev) => ({ ...prev, [query]: data.products }));
-      setLoading(false);
     } catch (err) {
       console.log(err);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -31,10 +32,12 @@ const Debaunce = () => {
     let timer = setTimeout(() => {
       if (search) {
         searchProduct(search);
+      } else {
+        setProduct([]);
       }
     }, 500);
     return () => clearTimeout(timer);
-  }, [search]);
+  }, [search, searchProduct]);
 
   return (
     <div>
