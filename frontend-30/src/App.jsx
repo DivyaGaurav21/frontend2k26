@@ -1,7 +1,9 @@
 import { useState } from "react";
 
 import "./App.css";
-import InfiniteScrollThroatliing from "./day-4/InfiniteScrollThroatliing";
+import ControlledForm from "./day-5/ControlledForm";
+// import InfiniteScrollThroatliing from "./day-4/InfiniteScrollThroatliing";
+// import EffectHook from "./day-5/EffectHook";
 // import StarRating from "./day-1/StarRating";
 // import Modal from "./day-1/Modal";
 // import CountDownTimer from "./day-2/CountDownTimer";
@@ -12,7 +14,7 @@ function App() {
 
   return (
     <>
-        {/* <button onClick={() => setIsOpen(true)}>
+      {/* <button onClick={() => setIsOpen(true)}>
           Open Modal
         </button>
         <Modal
@@ -20,10 +22,11 @@ function App() {
           <StarRating />
         </Modal> */}
 
-        {/* <CountDownTimer/> */}
-        {/* <UseReducer/> */}
-        <InfiniteScrollThroatliing/>
-
+      {/* <CountDownTimer/> */}
+      {/* <UseReducer/> */}
+      {/* <InfiniteScrollThroatliing/> */}
+      {/* <EffectHook/> */}
+      <ControlledForm />
     </>
   );
 }

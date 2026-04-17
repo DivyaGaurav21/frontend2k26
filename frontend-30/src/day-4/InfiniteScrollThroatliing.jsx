@@ -38,6 +38,15 @@ const InfiniteScrollThrottling = ({
     setPagination((prev) => prev + limit);
   }
 
+  //  function handleScroll() {
+  //   if (
+  //     window.innerHeight + window.scrollY >=
+  //     document.body.offsetHeight - 100
+  //   ) {
+  //     setPagination((prev) => prev + limit);
+  //   }
+  // }
+
   // ✅ Throttle Function
   function throttle(cb, delay) {
     let lastCall = 0;
