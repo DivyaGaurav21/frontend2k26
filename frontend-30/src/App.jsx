@@ -1,7 +1,8 @@
 import { useState } from "react";
 
 import "./App.css";
-import ControlledForm from "./day-5/ControlledForm";
+// import ControlledForm from "./day-5/ControlledForm";
+import FormValidation from "./day-5/FormValidation";
 // import InfiniteScrollThroatliing from "./day-4/InfiniteScrollThroatliing";
 // import EffectHook from "./day-5/EffectHook";
 // import StarRating from "./day-1/StarRating";
@@ -26,7 +27,8 @@ function App() {
       {/* <UseReducer/> */}
       {/* <InfiniteScrollThroatliing/> */}
       {/* <EffectHook/> */}
-      <ControlledForm />
+      {/* <ControlledForm /> */}
+      <FormValidation/>
     </>
   );
 }
