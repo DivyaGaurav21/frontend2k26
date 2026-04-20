@@ -15,13 +15,13 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
-.products{
+.list{
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     margin-top: 20px;
 }
-.product{
+.item{
     border: 1px solid #ddd;
     padding: 10px;
     width: 200px;

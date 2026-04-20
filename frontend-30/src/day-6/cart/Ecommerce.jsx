@@ -1,103 +1,100 @@
-import React, { useState, useEffect } from "react";
-import "./cart.css";
+import { useEffect, useState } from "react";
 import Cart from "./Cart";
 import Modal from "./Modal";
+import "./cart.css";
 
 const API_URL = "https://dummyjson.com/products";
 
-const Ecommerce = () => {
+export default function Ecommerce() {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cartItem, setCartItem] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
+  // Fetch products
   useEffect(() => {
-    fetch(API_URL)
-      .then((res) => res.json())
-      .then((data) => setProducts(data.products))
-      .catch((err) => console.log(err));
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch(API_URL);
+        const data = await res.json();
+        setProducts(data.products);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchProducts();
   }, []);
 
-  // ✅ Add to cart
-  const addToCart = (product) => {
-    const exist = cart.find((item) => item.id === product.id);
+  function isIntheCart(product) {
+    return cartItem.find((item) => item.id === product.id);
+  }
 
-    if (exist) {
-      // quantity increase
-      const updatedCart = cart.map((item) =>
-        item.id === product.id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item,
-      );
-      setCart(updatedCart);
+  // Add to cart
+  const handleCart = (product, type = "add") => {
+    if (isIntheCart(product)) {
+      let updated = cartItem.map((item) => {
+        if (item.id === product.id) {
+          return {
+            ...item,
+            quantity:
+              type === "decrease" ? item.quantity - 1 : item.quantity + 1,
+          };
+        }
+        return item;
+      });
+      updated = updated.filter((item) => item.quantity > 0);
+
+      setCartItem(updated);
     } else {
-      setCart([...cart, { ...product, quantity: 1 }]);
+      if (type === "add") {
+        setCartItem((prev) => [...prev, { ...product, quantity: 1 }]);
+      }
     }
-  };
-
-  // ✅ Remove from cart
-  const decreseQuantity = (product) => {
-    const exist = cart.find((item) => item.id === product.id);
-
-    if (exist.quantity > 1) {
-      // quantity decrease
-      const updatedCart = cart.map((item) =>
-        item.id === product.id
-          ? { ...item, quantity: item.quantity - 1 }
-          : item,
-      );
-      setCart(updatedCart);
-    } else {
-      // remove completely
-      const updatedCart = cart.filter((item) => item.id !== product.id);
-      setCart(updatedCart);
-    }
-  };
-
-  // ✅ Check if item in cart
-  const isInCart = (product) => {
-    return cart.find((item) => item.id === product.id);
   };
 
   return (
-    <div>
+    <div className="App">
       <header>
-        <h3>Ecommerce</h3>
-        <button onClick={() => setIsCartOpen(true)}>
-          Cart ({cart.length})
+        <h2>Ecom</h2>
+        <button onClick={() => setIsOpen(true)}>
+          Cart ({cartItem.length})
         </button>
       </header>
 
-      <div className="products">
-        {products.map((product) => (
-          <div className="product" key={product.id}>
-            <img src={product.thumbnail} width={200} alt={product.title} />
-            <h4>{product.title}</h4>
-            <p>{product.description}</p>
-            <p>Price: ${product.price}</p>
+      <div className="list">
+        {products.map((item) => {
+          const cartProduct = isIntheCart(item);
 
-            {cart.find((cartItem) => cartItem.id === product.id) ? (
-              <div>
-                <button onClick={() => decreseQuantity(product)}>-</button>
-                <span>
-                  {cart.find((cartItem) => cartItem.id === product.id).quantity}
-                </span>
-                <button onClick={() => addToCart(product)}>+</button>
+          return (
+            <div key={item.id} className="item">
+              <img src={item.thumbnail} alt={item.title} width={100} />
+              <p>{item.title}</p>
+
+              <div className="btn">
+                <span>$ {item.price}</span>
+
+                {cartProduct ? (
+                  <div>
+                    <button onClick={() => handleCart(item, "decrease")}>
+                      -
+                    </button>
+                    <span>{cartProduct.quantity}</span>
+                    <button onClick={() => handleCart(item, "add")}>+</button>
+                  </div>
+                ) : (
+                  <button onClick={() => handleCart(item, "add")}>
+                    Add to Cart
+                  </button>
+                )}
               </div>
-            ) : (
-              <button onClick={() => addToCart(product)}>Add to Cart</button>
-            )}
-          </div>
-        ))}
+            </div>
+          );
+        })}
       </div>
-      <Modal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)}>
-        <Cart
-          cartItems={cart}
-          addToCart={addToCart}
-          removeFromCart={decreseQuantity}
-        />
+
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <Cart cartItems={cartItem} handleCart={handleCart} />
       </Modal>
     </div>
   );
-};
-
-export default Ecommerce;
+}

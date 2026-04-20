@@ -1,6 +1,6 @@
 import React from "react";
 
-const Cart = ({ cartItems, addToCart, removeFromCart }) => {
+const Cart = ({ cartItems, handleCart }) => {
   // ✅ total price calculate
   const total = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -36,11 +36,11 @@ const Cart = ({ cartItems, addToCart, removeFromCart }) => {
 
               {/* Quantity controls */}
               <div>
-                <button onClick={() => removeFromCart(item)}>-</button>
+                <button onClick={() => handleCart(item, "decrease")}>-</button>
                 <span style={{ margin: "0 10px" }}>
                   {item.quantity}
                 </span>
-                <button onClick={() => addToCart(item)}>+</button>
+                <button onClick={() => handleCart(item, "add")}>+</button>
               </div>
 
               {/* Subtotal */}
