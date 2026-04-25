@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-.btn {
+button {
   @apply bg-primary text-white px-3 py-2 min-w-10 rounded-md;
+}
+input {
+  @apply border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent;
+}
+
+.dark{
+  @apply bg-black text-white;
+}
+.light{
+  @apply bg-white text-black;
 }

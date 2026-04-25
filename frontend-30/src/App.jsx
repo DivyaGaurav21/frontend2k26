@@ -1,38 +1,36 @@
-import { useState } from "react";
+// import React from "react";
+// import "./App.css";
+// import CounterExample from "./day-7/contextAPI/c1/component/CounterExample";
+// import CountContextProvider from "./day-7/contextAPI/c1/context/CounterContext";
 
+
+// const App = () => {
+//   return (
+//     <div>
+//       <CountContextProvider>
+//         <CounterExample />
+//       </CountContextProvider>
+//     </div>
+//   );
+// };
+
+// export default App;
+
+import React from 'react'
 import "./App.css";
-// import ControlledForm from "./day-5/ControlledForm";
-// import FormValidation from "./day-5/FormValidation";
-import Ecommerce from "./day-7/Ecommerce";
-// import InfiniteScrollThroatliing from "./day-4/InfiniteScrollThroatliing";
-// import EffectHook from "./day-5/EffectHook";
-// import StarRating from "./day-1/StarRating";
-// import Modal from "./day-1/Modal";
-// import CountDownTimer from "./day-2/CountDownTimer";
-// import UseReducer from "./day-3/UseReducer";
+import Home from './day-7/contextAPI/c2/components/Home';
+import AuthContextProvider from './day-7/contextAPI/c2/auth-context/AuthContext';
+import UseDropDown from './day-7/UseDropDown';
+import DarkLightTheme from './day-1/DarkLightTheme';
 
-function App() {
-  // const [isOpen, setIsOpen] = useState(false);
-
+const App = () => {
   return (
-    <>
-      {/* <button onClick={() => setIsOpen(true)}>
-          Open Modal
-        </button>
-        <Modal
-         isOpen={isOpen} isClose={() => setIsOpen(false)}>
-          <StarRating />
-        </Modal> */}
-
-      {/* <CountDownTimer/> */}
-      {/* <UseReducer/> */}
-      {/* <InfiniteScrollThroatliing/> */}
-      {/* <EffectHook/> */}
-      {/* <ControlledForm /> */}
-      {/* <FormValidation/> */}
-      <Ecommerce />
-    </>
-  );
+    <AuthContextProvider>
+      {/* <Home/> */}
+      {/* <UseDropDown /> */}
+      <DarkLightTheme/>
+    </AuthContextProvider>
+  )
 }
 
-export default App;
+export default App
