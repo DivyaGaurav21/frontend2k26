@@ -1,31 +1,43 @@
-// import React from "react";
-// import { useRef } from "react";
-// import { useState } from "react";
+// import React, { useRef, useState } from "react";
 
-// const CountDownTimer = () => {
-//   const [count, setCount] = useState(10);
+// const CountDownTimer = ({ initialTime = 10 }) => {
+//   const [count, setCount] = useState(initialTime);
 //   const timerRef = useRef(null);
 
 //   function startTimer() {
 //     if (timerRef.current) return;
+
 //     timerRef.current = setInterval(() => {
 //       setCount((prev) => {
-//         if (prev == 0) {
+//         if (prev === 0) {
 //           clearInterval(timerRef.current);
 //           timerRef.current = null;
-//           alert("time's Up");
+//           alert("Time's Up!");
 //           return 0;
-//         } else {
-//           return prev - 1;
 //         }
+//         return prev - 1;
 //       });
 //     }, 1000);
+//   }
+
+//   function pauseTimer() {
+//     clearInterval(timerRef.current);
+//     timerRef.current = null;
+//   }
+
+//   function restartTimer() {
+//     clearInterval(timerRef.current);
+//     timerRef.current = null;
+//     setCount(initialTime);
 //   }
 
 //   return (
 //     <div>
 //       <p>{count}</p>
+
 //       <button onClick={startTimer}>Start</button>
+//       <button onClick={pauseTimer}>Pause</button>
+//       <button onClick={restartTimer}>Restart</button>
 //     </div>
 //   );
 // };
@@ -40,26 +52,39 @@ const CountDownTimer = ({ initialTime = 10 }) => {
 
   useEffect(() => {
     if (!start) return;
-    let timer = setInterval(() => {
+
+    const timer = setInterval(() => {
       setCount((prev) => {
         if (prev === 0) {
-          clearInterval(timer);
-          alert("time up");
-          return 0;
-        } else {
-          return prev - 1;
+          setStart(false);
+          alert("Time Up!");
+          return 10;
         }
+        return prev - 1;
       });
     }, 1000);
+
     return () => clearInterval(timer);
   }, [start]);
+
+  function restartTimer() {
+    setStart(false);
+    setCount(initialTime);
+  }
 
   return (
     <div>
       <p>{count}</p>
+
       <button onClick={() => setStart(true)}>Start</button>
+      <button onClick={() => setStart(false)}>Pause</button>
+      <button onClick={restartTimer}>Restart</button>
     </div>
   );
 };
 
 export default CountDownTimer;
+
+
+// The cleanup function in useEffect is used to clean up side effects before the 
+// component unmounts or before the effect runs again.

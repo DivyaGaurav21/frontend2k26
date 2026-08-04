@@ -1,26 +1,22 @@
-/* eslint-disable no-unused-vars */
-let second = 0;
-let minute = 0;
-let hour = 0;
+let hours = document.getElementById("hours");
+let minutes = document.getElementById("minutes");
+let seconds = document.getElementById("seconds");
+
+let hour = 0,
+  minute = 0,
+  second = 0;
 let interval;
 
 function updateUi() {
-  document.getElementById("seconds").innerText = String(second).padStart(
-    2,
-    "0",
-  );
-  document.getElementById("minutes").innerText = String(minute).padStart(
-    2,
-    "0",
-  );
-  document.getElementById("hours").innerText = String(hour).padStart(2, "0");
+  seconds.innerText = String(second).padStart(2, "0");
+  minutes.innerText = String(minute).padStart(2, "0");
+  hours.innerText = String(hour).padStart(2, "0");
 }
 
-function start() {
+function startTimer() {
   if (interval) return;
   interval = setInterval(() => {
     second++;
-
     if (second === 60) {
       minute++;
       second = 0;
@@ -29,17 +25,16 @@ function start() {
       hour++;
       minute = 0;
     }
-
     updateUi();
-  }, 100);
+  }, 1000);
 }
 
-function pause() {
+function stopTimer() {
   clearInterval(interval);
   interval = null;
 }
 
-function reset() {
+function restartTimer() {
   clearInterval(interval);
   interval = null;
   second = 0;

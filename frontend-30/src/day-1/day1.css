@@ -9,8 +9,8 @@
   color: blue;
 }
 .modal {
-  height: full;
-  width: full;
+  height: 100%;
+  width: 100%;
   /* background-color: aqua; */
   position: fixed;
   top: 0;

@@ -14,9 +14,6 @@ function moveZeroAtEnd(arr) {
   for (let i = j; i < arr.length; i++) {
     sortZero[i] = 0;
   }
-  for (let k = 0; k < arr.length; k++) {
-    arr[k] = sortZero[k];
-  }
   return sortZero;
 }
 

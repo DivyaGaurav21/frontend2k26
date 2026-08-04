@@ -1,4 +1,8 @@
 {
-    "editor.acceptSuggestionOnEnter": "smart",
-    "editor.suggest.shareSuggestSelections": true
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
+  "editor.suggestOnTriggerCharacters": true
 }

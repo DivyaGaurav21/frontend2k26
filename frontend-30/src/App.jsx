@@ -1,13 +1,17 @@
-import React from 'react'
+import React from "react";
 import "./App.css";
-import TodoList from './practice/TodoList';
+import ReduxEcom from "./day-10/ReduxEcom";
+import appStore from "./day-10/redux/store";
+import { Provider } from "react-redux";
 
 const App = () => {
   return (
     <div>
-      <TodoList />
+      <Provider store={appStore}>
+        <ReduxEcom />
+      </Provider>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

@@ -1,25 +1,41 @@
-let timerElemnt = document.getElementById("timer");
-let button = document.getElementById("start");
+import "./styles.css";
 
-function updateUi(count) {
-  timerElemnt.innerHTML = count;
+const btn = document.getElementById("btn");
+const ui = document.getElementById("ui");
+const pauseBtn = document.getElementById("pause");
+const restartBtn = document.getElementById("restart");
+let timer = 10;
+let interval = null;
+function updateUi(time) {
+  ui.innerText = String(time).padStart(2, "0");
 }
 
-let timer;
-function startTimer() {
-  if (timer) return;
-  let count = 10;
-  updateUi(count);
-  timer = setInterval(() => {
-    if (count === 0) {
-      clearInterval(timer);
-      timer = null;
-      alert("times up!!");
-      return;
+function btnClickHandler() {
+  if (interval) return;
+  interval = setInterval(() => {
+    console.log("timer......");
+    timer--;
+    updateUi(timer);
+    if (timer === -1) {
+      clearInterval(interval);
+      interval = null;
+      alert("time up!");
     }
-    count = count - 1;
-    updateUi(count);
-  }, 100);
+  }, 1000);
 }
 
-button.addEventListener("click", startTimer);
+function pauseHandler() {
+  clearInterval(interval);
+  interval = null;
+}
+
+function restartHandler() {
+  clearInterval(interval);
+  interval = null;
+  timer = 10;
+  updateUi(timer);
+}
+
+btn.addEventListener("click", btnClickHandler);
+pauseBtn.addEventListener("click", pauseHandler);
+restartBtn.addEventListener("click", restartHandler);

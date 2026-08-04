@@ -1,0 +1,7 @@
+.timer{
+    border: 1px solid black;
+    width: fit-content;
+    padding: 10px;
+    margin: 10px;
+    font-size: 25px;
+}
