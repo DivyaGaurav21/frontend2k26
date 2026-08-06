@@ -37,7 +37,7 @@ const Debaunce = () => {
       }
     }, 500);
     return () => clearTimeout(timer);
-  }, [search, searchProduct]);
+  }, [search]);
 
   return (
     <div>

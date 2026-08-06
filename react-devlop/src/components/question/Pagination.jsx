@@ -2,66 +2,97 @@ import React, { useEffect, useState } from "react";
 
 const API_URL = "https://dummyjson.com/products";
 
-const Pagination = () => {
-  const [data, setData] = useState([]);
-  const [currPage, setCurrPage] = useState(0);
+const Practice = () => {
+  const [page, setPage] = useState(0);
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchData = async () => {
+  const totalPage = Math.ceil(data?.total / 10);
+  const limit = 10;
+  const skip = 10;
+
+  const fetchProducts = async (page) => {
     try {
       setLoading(true);
-      const res = await fetch(API_URL);
-      const data = await res.json();
-      setData(data.products);
+      const response = await fetch(
+        `${API_URL}?limit=${limit}&skip=${page * skip}`,
+      );
+      const data = await response.json();
+      setData(data);
     } catch (err) {
-      setError(err.message);
+      setError(err?.message);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchProducts(page);
+  }, [page]);
 
-  const ITEMONPAGE = 5;
-  const totalItems = data?.length;
-  const totalPages = Math.ceil(totalItems / ITEMONPAGE);
+  const getPagination = () => {
+    if (totalPage <= 7) {
+      return Array.from({ length: totalPage }, (_, i) => i);
+    }
 
-  const si = currPage * ITEMONPAGE;
-  const ei = si + ITEMONPAGE;
+    if (page <= 2) {
+      return [0, 1, 2, "...", totalPage - 1];
+    }
+
+    if (page >= totalPage - 3) {
+      return [0, "...", totalPage - 3, totalPage - 2, totalPage - 1];
+    }
+
+    return [0, "...", page - 1, page, page + 1, "...", totalPage - 1];
+  };
 
   return (
     <div>
-      <div className="mb-2">
-        <button  onClick={() => setCurrPage(curr => curr - 1)} disabled={currPage === 0}>Prev</button>
-        {totalPages &&
-          [...Array(totalPages)].map((_, i) => (
+      <div>
+        <button disabled={page === 0} onClick={() => setPage(page - 1)}>
+          Prev
+        </button>
+        {/* {totalPage &&
+          [...Array(totalPage)].map((_, i) => (
             <button
-              className={`border px-2 ${i === currPage ? "bg-amber-200" : ""}`}
-              onClick={() => setCurrPage(i)}
-              key={i}
-            >
+             onClick={() => setPage(i)} key={i}
+             className={i === page ? "active" : ""}
+             >
               {i + 1}
             </button>
-          ))}
-          <button onClick={() => setCurrPage(curr => curr + 1)} disabled={currPage === totalPages-1}>Next</button>
+          ))} */}
+        {getPagination().map((item, index) =>
+          item === "..." ? (
+            <span key={index} style={{ margin: "0 8px" }}>
+              ...
+            </span>
+          ) : (
+            <button
+              key={item}
+              onClick={() => setPage(item)}
+              className={page === item ? "active" : ""}
+            >
+              {item + 1}
+            </button>
+          ),
+        )}
+        <button
+          disabled={page === totalPage - 1}
+          onClick={() => setPage(page + 1)}
+        >
+          Next
+        </button>
       </div>
-      <div>
-        <p>{loading && "loading"}</p>
-        <p>{error && "error"}</p>
-      </div>
-      <div className="flex flex-wrap gap-2">
-        {data.slice(si, ei).map((item) => (
-          <div className=" border max-w-50" key={item.id}>
-            <img src={item.thumbnail} />
-            <p>{item.title}</p>
-          </div>
+      {loading && <p>Loading....</p>}
+      {error && <p>{error}</p>}
+      <ul>
+        {data?.products.map((item) => (
+          <li key={item.id}>{item.title}</li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };
 
-export default Pagination;
+export default Practice;
