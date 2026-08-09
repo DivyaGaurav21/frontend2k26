@@ -6,7 +6,6 @@
 //TC- O(nlogn) - due to sorting
 //SC- O(n) - due to array in split
 
-
 // Approach - 2 
 
 var isAnagram = function(s, t) {

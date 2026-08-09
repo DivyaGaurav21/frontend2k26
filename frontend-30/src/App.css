@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 
 /* button {
   @apply bg-primary text-white px-3 py-2 min-w-10 rounded-md m-2;
