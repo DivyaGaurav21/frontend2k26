@@ -1,5 +1,6 @@
 import React from "react";
 import YoutubeStream from "./day-11/YoutubeStream";
+import OptimisticUI from "./day-12/OptimisticUI";
 // import ImageSlider from "./day-11/ImageSlider";
 // import AutocompleteSearch from "./day-11/AutocompleteSearch";
 // import "./App.css";
@@ -19,7 +20,8 @@ const App = () => {
       {/* <Practice /> */}
       {/* <AutocompleteSearch/> */}
       {/* <ImageSlider /> */}
-      <YoutubeStream/>
+      {/* <YoutubeStream/> */}
+      <OptimisticUI />
     </div>
   );
 };
