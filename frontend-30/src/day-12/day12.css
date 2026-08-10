@@ -1,4 +1,4 @@
-ul{
+/* ul{
     list-style: none;
     margin-left: 0px;
     display: flex;
@@ -21,4 +21,68 @@ li{
 .error{
     color: red;
     font-size: small;
+} */
+/* 
+.dashboard {
+  padding: 24px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.widget-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.widget {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: white;
+}
+
+.widget h3 {
+  margin-bottom: 12px;
+}
+
+.widget h2 {
+  font-size: 28px;
+}
+
+.error {
+  color: red;
+}
+
+@media (max-width: 768px) {
+  .stats-grid,
+  .widget-grid {
+    grid-template-columns: 1fr;
+  }
+} */
+
+.dashboard{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.widget{
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: bisque;
+  font-weight: 600;
+  font-size: medium;
+}
+.widget-cont{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
